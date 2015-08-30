@@ -12,7 +12,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Lelio ampanile', 'lelio.campanile@gmail.com'),
 )
 MANAGERS = ADMINS
 
@@ -23,6 +23,13 @@ SITE_ID = 1
 USE_I18N = False
 USE_L10N = False
 USE_TZ = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'lc.db'
+    }
+}
 
 MEDIA_ROOT = os.path.join(SITE_ROOT, 'static')
 
@@ -39,6 +46,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+
 )
 
 ROOT_URLCONF = 'syte.urls'
@@ -50,6 +59,7 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
@@ -63,6 +73,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.auth',
+    'django.contrib.flatpages',
+    'django.contrib.admin',
     'gunicorn',
 )
 

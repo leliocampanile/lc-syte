@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.views.generic import TemplateView, RedirectView
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 from django.conf import settings
+from django.contrib import admin
+admin.autodiscover()
 
 handler404 = 'syte.views.home.page_not_found_error' 
 handler500 = 'syte.views.home.server_error'
@@ -13,7 +15,10 @@ urlpatterns = patterns('',
     url(r'^about/?$', 'syte.views.home.home'),
     url(r'^rss/?$', 'syte.views.home.rss'),
     url(r'^/?$', 'syte.views.home.home'),
+    url(r'^admin/', include(admin.site.urls)),
+
 )
+
 
 #Twitter Integration
 if settings.TWITTER_INTEGRATION_ENABLED:
@@ -108,4 +113,9 @@ if settings.SITEMAP_ENABLED:
 urlpatterns += patterns('',
     (r'^robots\.txt$', TemplateView.as_view(template_name="robots.txt")),
     (r'^favicon\.ico$', RedirectView.as_view(url="/static/imgs/favicon.ico")),
+)
+
+#adding static article with flatpage fechall
+urlpatterns += patterns('django.contrib.flatpages.views',
+    (r'^(?P<url>.*/)$', 'flatpage'),
 )
