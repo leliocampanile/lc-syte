@@ -25,7 +25,6 @@ function setupTwitter(url, el) {
                 window.location = href;
                 return;
             }
-
             var template = Handlebars.compile(twitter_view);
 
             var tweets = [];
@@ -63,7 +62,7 @@ function setupTwitter(url, el) {
 }
 
 function twitterLinkify(text) {
-  text = text.replace(/(https?:\/\/\S+)/gi, function (s) {
+  text = (text||"").replace(/(https?:\/\/\S+)/gi, function (s) {
     return '<a href="' + s + '">' + s + '</a>';
   });
 
