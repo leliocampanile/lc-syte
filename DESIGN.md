@@ -22,3 +22,4 @@
         - Querying server-side endpoint for the service and populating
             handlebar.js context with json returned.
         - Rendering template for service with handlebar.js
+- questa è la versione modificata da lelio campanile
